@@ -1,0 +1,126 @@
+<div class="bg-white">
+    <header class="fixed inset-x-0 top-0 z-50 bg-white w-full">
+        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex lg:flex-1">
+                <a href="#" class="-m-1.5 p-1.5 flex items-center">
+                    <img class="h-8 w-auto mr-2" src="assets/images/coding.png" alt="" />
+                    <span class="">Fook.Fixx</span>
+                </a>
+            </div>
+            <div class="flex lg:hidden">
+                <button type="button" (click)="toggleMenu()"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex lg:gap-x-12">
+                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToTop()">Home</a>
+                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('about-me')">About</a>
+                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('portfolio')">Portfolio</a>
+                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('contact-me')">Contract</a>
+            </div>
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span
+                        aria-hidden="true">&rarr;</span></a>
+            </div>
+        </nav>
+        <!-- Mobile menu, show/hide based on menu open state. -->
+        <div *ngIf="isMenuOpen" class="lg:hidden" role="dialog" aria-modal="true">
+            <!-- Background backdrop, show/hide based on slide-over state. -->
+            <div class="fixed inset-0 z-50"></div>
+            <div
+                class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                <div class="flex items-center justify-between">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Fook.Fixx</span>
+                        <img class="h-8 w-auto"
+                            src="assets/images/coding.png" alt="">
+                    </a>
+                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" (click)="closeMenu()">
+                        <span class="sr-only">Close menu</span>
+                        <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-6 flow-root">
+                    <div class="-my-6 divide-y divide-gray-500/10">
+                        <div class="space-y-2 py-6">
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToTop()">Home</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('about-me')">About</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('portfolio')">Portfolio</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('contact-me')">Contract</a>
+                        </div>
+                        <div class="py-6">
+                            <a href="#"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Log
+                                in</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+        <div class="p-6">
+            <img class="mt-20"  src="assets/images/heatmap.svg" alt="img-heatmap" data-aos="fade-right">
+        </div>
+        <div class="p-6" id="home-top">
+            <div class="text-center">
+                <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl" data-aos="fade-left">I'm Web <span class="gradient-text">Developer</span></h1>
+                <p class="mt-4 text-lg text-gray-600" data-aos="fade-right">
+                    With over 4 years of experience in building scalable web applications, I specialize in 
+                    <span class="font-bold text-blue-500">Angular</span>, <span class="font-bold text-blue-500">Vue.js</span>, 
+                    <span class="font-bold text-blue-500">React</span>
+                    and <span class="font-bold text-blue-500">ASP.NET Core</span>. I love turning ideas into real-world, 
+                    high-performance web solutions.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="about-me" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+        <div class="p-6">
+            <div class="text-left">
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-right">About Me</h2>
+                <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
+                    I'm a passionate Web Developer with a strong background in front-end and back-end technologies. I specialize in
+                    creating seamless, responsive web applications with a focus on user experience. Let's build something amazing together!
+                </p>
+            </div>
+        </div>
+        <div class="p-6">
+            <img class="mt-20"  src="assets/images/code-thinking.svg" alt="img-thinking" data-aos="fade-left">
+        </div>
+    </div>
+
+    <div id="portfolio" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+        <div class="p-6">
+            <img class="mt-20"  src="assets/images/interior-design.svg" alt="img-design" data-aos="fade-right">
+        </div>
+        <div class="p-6" id="home-top">
+            <div class="text-center">
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-left">Portfolio</h2>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="contact-me" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+        <div class="p-6">
+            <div class="text-left">
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-right">Contract</h2>
+                
+            </div>
+        </div>
+        <div class="p-6">
+            <img class="mt-20"  src="assets/images/contact-us.svg" alt="img-contact" data-aos="fade-left">
+        </div>
+    </div>
+</div>
