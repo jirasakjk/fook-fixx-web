@@ -1,8 +1,8 @@
 <div class="bg-white">
-    <header class="fixed inset-x-0 top-0 z-50 bg-white w-full">
+    <header class="fixed inset-x-0 top-0 z-50 bg-white/50 backdrop-blur-md w-full">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5 flex items-center">
+                <a class="-m-1.5 p-1.5 flex items-center">
                     <img class="h-8 w-auto mr-2" src="assets/images/coding.png" alt="" />
                     <span class="">Fook.Fixx</span>
                 </a>
@@ -19,10 +19,10 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToTop()">Home</a>
-                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('about-me')">About</a>
-                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('portfolio')">Portfolio</a>
-                <a class="text-sm/6 font-semibold text-gray-900" (click)="scrollToSection('contact-me')">Contract</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToTop()">Home</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('about-me')">About</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('portfolio')">Portfolio</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('contact-me')">Contract</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span
@@ -30,7 +30,7 @@
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
-        <div *ngIf="isMenuOpen" class="lg:hidden" role="dialog" aria-modal="true">
+        <div class="lg:hidden" role="dialog" aria-modal="true">
             <!-- Background backdrop, show/hide based on slide-over state. -->
             <div class="fixed inset-0 z-50"></div>
             <div
@@ -68,7 +68,7 @@
         </div>
     </header>
 
-    <div class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+    <div class="relative isolate px-6 pt-14 pb-14 mt-20 lg:px-8 flex items-center justify-evenly">
         <div class="p-6">
             <img class="mt-20"  src="assets/images/heatmap.svg" alt="img-heatmap" data-aos="fade-right">
         </div>
@@ -116,7 +116,12 @@
         <div class="p-6">
             <div class="text-left">
                 <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-right">Contract</h2>
-                
+                <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
+                   {{ contract }}
+                </p>
+                <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
+                    {{ email }}
+                 </p>
             </div>
         </div>
         <div class="p-6">

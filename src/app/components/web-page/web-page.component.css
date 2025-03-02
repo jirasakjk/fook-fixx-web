@@ -4,3 +4,6 @@
     -webkit-background-clip: text;
     color: transparent;
 }
+.mouse-hover{
+    cursor: pointer;
+}

@@ -10,6 +10,8 @@ import AOS from 'aos';
 export class WebPageComponent {
 
   public isMenuOpen: boolean = false;
+  public contract: string = ` Mr. JIRASAK KANKRASANG`
+  public email: string = `jirasak.kankrasang@hotmail.com`
 
   ngOnInit() {
     AOS.init();
@@ -33,5 +35,6 @@ export class WebPageComponent {
 
   public scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.isMenuOpen = false;
   }
 }
