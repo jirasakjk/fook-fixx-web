@@ -45,6 +45,11 @@ export class WebPageComponent {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.isMenuOpen = false;
+      if (this.isMenuOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
   }
 
