@@ -33,7 +33,7 @@ import AOS from 'aos';
 export class WebPageComponent {
 
   public isMenuOpen: boolean = false;
-  public contract: string = ` Mr. JIRASAK KANKRASANG`
+  public contract: string = `JIRASAK KANKRASANG`
   public email: string = `jirasak.kankrasang@hotmail.com`
 
   ngOnInit() {
@@ -48,16 +48,32 @@ export class WebPageComponent {
     }
   }
 
-  public toggleMenu() {
+  toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    if (this.isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
-
-  public closeMenu() {
+  
+  closeMenu() {
     this.isMenuOpen = false;
+    document.body.style.overflow = '';
   }
 
   public scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.isMenuOpen = false;
+  }
+
+  public clickGithub(event: Event) {
+    event.preventDefault(); // Prevent default navigation
+    window.open('https://github.com/jirasakjk', '_blank');
+  }
+
+  clickLinkedin(event: Event) {
+    event.preventDefault(); // Prevent default navigation
+    window.open('https://linkedin.com/in/jirasak-kankrasang-b5b0151b2', '_blank');
   }
 }

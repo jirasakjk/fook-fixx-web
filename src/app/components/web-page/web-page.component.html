@@ -1,5 +1,6 @@
 <div class="bg-white">
-    <header class="fixed inset-x-0 top-0 z-50 bg-white/10 w-full" [ngClass]="!isMenuOpen ? 'backdrop-blur-md' : ''">
+    <header class="fixed top-0 left-0 right-0 z-50 w-full bg-white/10"
+        [ngClass]="!isMenuOpen ? 'backdrop-blur-md' : ''">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a class="-m-1.5 p-1.5 flex items-center">
@@ -20,9 +21,12 @@
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToTop()">Home</a>
-                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('about-me')">About</a>
-                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('portfolio')">Portfolio</a>
-                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover" (click)="scrollToSection('contact-me')">Contract</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover"
+                    (click)="scrollToSection('about-me')">About</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover"
+                    (click)="scrollToSection('portfolio')">Portfolio</a>
+                <a class="text-sm/6 font-semibold text-gray-900 mouse-hover"
+                    (click)="scrollToSection('contact-me')">Contract</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span
@@ -33,15 +37,15 @@
         <div *ngIf="isMenuOpen" class="lg:hidden" role="dialog" aria-modal="true">
             <!-- Background backdrop, show/hide based on slide-over state. -->
             <div class="fixed inset-0 z-50"></div>
-            <div
-                class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 bg-white/10 backdrop-blur-md" [ngClass]="isMenuOpen ? 'backdrop-blur-md' : ''"  [@fadeInOut]>
+            <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 bg-white/10 backdrop-blur-md"
+                [ngClass]="isMenuOpen ? 'backdrop-blur-md' : ''" [@fadeInOut]>
                 <div class="flex items-center justify-between">
                     <a class="-m-1.5 p-1.5 flex items-center">
-                        <img class="h-8 w-auto mr-2"
-                        src="assets/images/coding.png" alt="">
+                        <img class="h-8 w-auto mr-2" src="assets/images/coding.png" alt="">
                         <span>Fook.Fixx</span>
                     </a>
-                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" (click)="closeMenu()">
+                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" (click)="closeMenu()"
+                        [@menuFade]>
                         <span class="sr-only">Close menu</span>
                         <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             aria-hidden="true" data-slot="icon">
@@ -52,10 +56,14 @@
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 py-6">
-                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToTop()">Home</a>
-                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('about-me')">About</a>
-                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('portfolio')">Portfolio</a>
-                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" (click)="scrollToSection('contact-me')">Contract</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                (click)="scrollToTop()">Home</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                (click)="scrollToSection('about-me')">About</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                (click)="scrollToSection('portfolio')">Portfolio</a>
+                            <a class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                (click)="scrollToSection('contact-me')">Contract</a>
                         </div>
                         <div class="py-6">
                             <a href="#"
@@ -68,80 +76,163 @@
         </div>
     </header>
 
-    <div class="relative isolate px-6 pt-14 pb-14 mt-20 lg:px-8 flex items-center justify-evenly">
-        <!-- <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-            <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-        </div> -->
+    <div
+        class="relative isolate px-6 pt-14 pb-14 mt-20 lg:px-8 flex flex-col-reverse sm:flex-row items-center justify-evenly">
         <div class="p-6">
-            <img class="mt-20"  src="assets/images/heatmap.svg" alt="img-heatmap" data-aos="fade-right">
+            <img class="mt-20" src="assets/images/heatmap.svg" alt="img-heatmap" data-aos="fade-right">
         </div>
         <div class="p-6" id="home-top">
             <div class="text-center">
-                <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl" data-aos="fade-left">I'm Web <span class="gradient-text">Developer</span></h1>
+                <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl"
+                    data-aos="fade-left">I'm Web <span class="gradient-text">Developer</span></h1>
                 <p class="mt-4 text-lg text-gray-600" data-aos="fade-right">
-                    With over 4 years of experience in building scalable web applications, I specialize in 
-                    <span class="font-bold text-blue-500">Angular</span>, <span class="font-bold text-blue-500">Vue.js</span>, 
+                    With over 4 years of experience in building scalable web applications, I specialize in
+                    <span class="font-bold text-blue-500">Angular</span>, <span
+                        class="font-bold text-blue-500">Vue.js</span>,
                     <span class="font-bold text-blue-500">React</span>
-                    and <span class="font-bold text-blue-500">ASP.NET Core</span>. I love turning ideas into real-world, 
+                    and <span class="font-bold text-blue-500">ASP.NET Core</span>. I love turning ideas into real-world,
                     high-performance web solutions.
                 </p>
             </div>
         </div>
-        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-            <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-          </div>
+        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
+        </div>
     </div>
-    <div id="about-me" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
-        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-            <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    <div id="about-me"
+        class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex flex-col-reverse sm:flex-row items-center justify-evenly">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
         </div>
         <div class="p-6">
             <div class="text-left">
-                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-right">About Me</h2>
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl"
+                    data-aos="fade-right">About Me</h2>
                 <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
-                    I'm a passionate Web Developer with a strong background in front-end and back-end technologies. I specialize in
-                    creating seamless, responsive web applications with a focus on user experience. Let's build something amazing together!
+                    I'm a passionate Web Developer with a strong background in front-end and back-end technologies. I
+                    specialize in
+                    creating seamless, responsive web applications with a focus on user experience. Let's build
+                    something amazing together!
                 </p>
             </div>
         </div>
         <div class="p-6">
-            <img class="mt-20"  src="assets/images/code-thinking.svg" alt="img-thinking" data-aos="fade-left">
+            <img class="mt-20" src="assets/images/code-thinking.svg" alt="img-thinking" data-aos="fade-left">
         </div>
     </div>
 
-    <div id="portfolio" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
+    <div id="portfolio"
+        class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex flex-col-reverse sm:flex-row items-center justify-evenly">
         <div class="p-6">
-            <img class="mt-20"  src="assets/images/interior-design.svg" alt="img-design" data-aos="fade-right">
+            <img class="mt-20" src="assets/images/interior-design.svg" alt="img-design" data-aos="fade-right">
         </div>
         <div class="p-6" id="home-top">
             <div class="text-center">
-                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-left">Portfolio</h2>
-                
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl"
+                    data-aos="fade-left">Portfolio</h2>
+
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto break-words text-start" data-aos="fade-up">
+                    Explore my projects, where I combine creativity and technology to build **scalable,
+                    high-performance** web applications.
+                    With expertise in **Angular, Vue.js, React, and ASP.NET Core**, I create **seamless user
+                    experiences** that bring ideas to life.
+                </p>
             </div>
         </div>
-        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-            <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
         </div>
     </div>
-    
-    <div id="contact-me" class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex items-center justify-evenly">
-       
+
+    <div id="contact-me"
+        class="relative isolate px-6 pt-14 pb-14 lg:px-8 flex flex-col-reverse sm:flex-row items-center justify-evenly">
+
         <div class="p-6">
             <div class="text-left">
-                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl" data-aos="fade-right">Contract</h2>
+                <h2 class="text-3xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl"
+                    data-aos="fade-right">Contract</h2>
                 <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
-                   {{ contract }}
+                    {{ contract }}
                 </p>
                 <p class="mt-4 text-lg text-gray-600" data-aos="fade-left" data-aos-delay="200">
                     {{ email }}
-                 </p>
+                </p>
+                <div class="flex">
+                    <a (click)="clickGithub($event)">
+                        <img class="w-[50px] mt-10 mr-2" src="assets/images/github.png" alt="img-design"
+                            data-aos="fade-left">
+                    </a>
+                    <a (click)="clickLinkedin($event)">
+                        <img class="w-[50px] mt-10" src="assets/images/linkedin.png" alt="img-design"
+                            data-aos="fade-left">
+                    </a>
+                </div>
             </div>
         </div>
         <div class="p-6">
-            <img class="mt-20"  src="assets/images/contact-us.svg" alt="img-contact" data-aos="fade-left">
+            <img class="mt-20" src="assets/images/contact-us.svg" alt="img-contact" data-aos="fade-left">
+        </div>
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+            aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
         </div>
     </div>
-    <footer class="pt-14 bg-white/50">
-
+    <div class="bg-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 class="text-center text-lg/8 font-semibold text-gray-900">My Tech Stack
+            </h2>
+            <div
+                class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-8">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/angularjs.png"
+                    alt="Transistor" width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/vuejs.png"
+                    alt="Transistor" width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/asp.png" alt="Reform"
+                    width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/html.png" alt="Tuple"
+                    width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/css-3.png" alt="Tuple"
+                    width="158" height="48">  
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/letter-c.png" alt="Tuple"
+                    width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/typescript.png" alt="SavvyCal"
+                    width="158" height="48">
+                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                    src="assets/images/sql-server.png" alt="Statamic"
+                    width="158" height="48">
+            </div>
+        </div>
+    </div>
+    <footer class="pt-14 bg-white/50 pb-10 text-center text-gray-700">
+        <div class="container mx-auto px-6">
+            <p class="text-sm">
+                © 2025 JIRASAK KANKRASANG. All Rights Reserved.
+            </p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <a (click)="scrollToTop()" class="hover:text-blue-500">Home</a>
+                <a (click)="scrollToSection('about-me')" class="hover:text-blue-500">About</a>
+                <a (click)="scrollToSection('portfolio')" class="hover:text-blue-500">Portfolio</a>
+                <a (click)="scrollToSection('contact-me')" class="hover:text-blue-500">Contact</a>
+            </div>
+        </div>
     </footer>
+    
 </div>
