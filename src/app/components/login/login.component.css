@@ -2,6 +2,11 @@
   filter: saturate(0.9) contrast(1.05);
 }
 
+.page-card {
+  border: none;
+  background: transparent;
+}
+
 .login-page {
   animation: loginPageEntrance 0.9s ease-out;
 }
@@ -20,48 +25,54 @@
 }
 
 input {
-  border-color: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+  color: white;
+  background-color: rgba(255,255,255,0.03);
 }
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(59,130,246,0.08);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.18);
 }
 
 :host-context(.light-mode) input {
-  border-color: rgba(15,23,42,0.15) !important;
+  border-color: rgba(15,23,42,0.2) !important;
   color: #0f172a !important;
+  background-color: rgba(255,255,255,0.88) !important;
 }
 
 :host-context(.light-mode) input::placeholder {
-  color: rgba(15,23,42,0.4) !important;
+  color: rgba(15,23,42,0.5) !important;
 }
 
 :host-context(.light-mode) input:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(59,130,246,0.15) !important;
-  border-color: rgba(59,130,246,0.3) !important;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.18) !important;
+  border-color: rgba(59,130,246,0.35) !important;
 }
 
-:host-context(.light-mode) h2 {
-  color: #0f172a !important;
+.form-panel {
+  background-color: rgba(15,23,42,0.85);
 }
 
-:host-context(.light-mode) label {
+:host-context(.light-mode) .form-panel {
+  background-color: rgba(255,255,255,0.95) !important;
+  border-color: rgba(15,23,42,0.12) !important;
+}
+
+:host-context(.light-mode) h2,
+:host-context(.light-mode) label,
+:host-context(.light-mode) .text-slate-400 {
   color: #0f172a !important;
 }
 
 :host-context(.light-mode) button[type="submit"] {
-  background-color: #3b82f6 !important;
+  background-color: #2563eb !important;
   color: white !important;
 }
 
 :host-context(.light-mode) button[type="submit"]:hover:not(:disabled) {
-  background-color: #2563eb !important;
-}
-
-:host-context(.light-mode) button[type="submit"]:disabled {
-  opacity: 0.6;
+  background-color: #1d4ed8 !important;
 }
 
 :host-context(.light-mode) a[routerLink="/register"] {

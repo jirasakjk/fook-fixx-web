@@ -1,16 +1,17 @@
 <div class="mx-auto max-w-6xl px-6 py-12 login-page">
-  <div class="rounded-2xl border page-card p-6 shadow-xl flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-stretch login-card">
+  <div class="rounded-2xl page-card p-6 shadow-xl flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-stretch login-card">
     <div class="w-full lg:w-1/2 flex items-center justify-center">
       <img class="login-illustration max-w-full h-auto rounded-lg" src="assets/images/undraw_two-factor-authentication_ofho.svg" alt="two-factor authentication illustration" />
     </div>
 
     <div class="w-full lg:w-1/2">
-      <div class="mb-6">
-        <h2 class="text-2xl font-semibold">Sign in to your account</h2>
-        <p class="text-sm text-slate-400">Secure access to your portfolio dashboard</p>
-      </div>
+      <div class="form-panel rounded-3xl border border-white/10 bg-slate-950/95 p-8 shadow-xl">
+        <div class="mb-6">
+          <h2 class="text-2xl font-semibold">Sign in to your account</h2>
+          <p class="text-sm text-slate-400">Secure access to your portfolio dashboard</p>
+        </div>
 
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
         <div>
           <label class="block text-sm font-medium">Username</label>
           <input formControlName="username" type="text" placeholder="your.username" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
@@ -28,6 +29,7 @@
           <a routerLink="/register" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold">Sign up</a>
         </div>
       </form>
+      </div>
     </div>
   </div>
 </div>
