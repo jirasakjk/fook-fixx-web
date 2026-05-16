@@ -6,7 +6,7 @@ import AOS from 'aos';
   selector: 'app-web-page',
   standalone: false,
   templateUrl: './web-page.component.html',
-  styleUrl: './web-page.component.css',
+  styleUrls: ['./web-page.component.css'],
   animations: [
     trigger('menuFade', [
       transition(':enter', [

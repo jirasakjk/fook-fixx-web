@@ -1,0 +1,78 @@
+:host {
+  display: block;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:host .page-shell {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 30%),
+              radial-gradient(circle at bottom right, rgba(139,92,246,0.2), transparent 35%),
+              #0f172a;
+  color: #f8fafc;
+}
+
+:host .page-header {
+  background: rgba(15,23,42,0.95);
+  border-color: rgba(255,255,255,0.12);
+}
+
+:host .page-card {
+  background: rgba(15,23,42,0.75);
+  border-color: rgba(255,255,255,0.1);
+}
+
+:host-context(.light-mode) .page-shell {
+  background: radial-gradient(circle at top left, rgba(59,130,246,0.14), transparent 25%),
+              radial-gradient(circle at bottom right, rgba(139,92,246,0.12), transparent 35%),
+              #f8fafc;
+  color: #0f172a;
+}
+
+:host-context(.light-mode) .page-header {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(15,23,42,0.08);
+}
+
+:host-context(.light-mode) .page-card {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(15,23,42,0.08);
+  color: #0f172a;
+}
+
+:host-context(.light-mode) .text-white {
+  color: #0f172a !important;
+}
+
+:host-context(.light-mode) .text-slate-300,
+:host-context(.light-mode) .text-slate-400,
+:host-context(.light-mode) .text-slate-500 {
+  color: #475569 !important;
+}
+
+:host-context(.light-mode) .bg-white\/5 {
+  background-color: rgba(255,255,255,0.8) !important;
+}
+
+:host-context(.light-mode) .border-white\/10 {
+  border-color: rgba(15,23,42,0.08) !important;
+}
+
+button,
+a {
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+a:hover,
+button:hover {
+  transform: translateY(-1px);
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: white;
+}
