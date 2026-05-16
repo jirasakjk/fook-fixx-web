@@ -62,6 +62,27 @@
   border-color: rgba(15,23,42,0.08) !important;
 }
 
+:host-context(.light-mode) article.group {
+  background-color: rgba(255,255,255,0.92) !important;
+  border-color: rgba(15,23,42,0.08) !important;
+  color: #0f172a;
+}
+
+:host-context(.light-mode) article.group:hover {
+  background-color: rgba(241,245,249,0.95) !important;
+}
+
+:host-context(.light-mode) a[routerLink="/login"] {
+  color: #0f172a !important;
+  background-color: rgba(59,130,246,0.1) !important;
+  border-color: rgba(59,130,246,0.3) !important;
+}
+
+:host-context(.light-mode) a[routerLink="/login"]:hover {
+  background-color: rgba(59,130,246,0.2) !important;
+  border-color: rgba(59,130,246,0.4) !important;
+}
+
 button,
 a {
   transition: transform 0.25s ease, background-color 0.25s ease;

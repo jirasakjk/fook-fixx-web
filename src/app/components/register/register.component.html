@@ -1,0 +1,44 @@
+<div class="mx-auto max-w-6xl px-6 py-12 register-page">
+  <div class="rounded-2xl border page-card p-6 shadow-xl flex flex-col-reverse items-center gap-8 lg:flex-row lg:items-stretch register-card">
+    <div class="w-full lg:w-1/2 flex items-center justify-center">
+      <img class="register-illustration max-w-full h-auto rounded-lg" src="assets/images/undraw_two-factor-authentication_ofho.svg" alt="signup illustration" />
+    </div>
+
+    <div class="w-full lg:w-1/2">
+      <div class="mb-6">
+        <h2 class="text-2xl font-semibold">Create your account</h2>
+        <p class="text-sm text-slate-400">Start building with Fook.Fixx</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Username</label>
+          <input formControlName="username" type="text" placeholder="your.username" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <div *ngIf="f['username'].touched && f['username'].invalid" class="mt-1 text-xs text-rose-400">Username is required</div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium">Email</label>
+          <input formControlName="email" type="email" placeholder="you@example.com" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <div *ngIf="f['email'].touched && f['email'].invalid" class="mt-1 text-xs text-rose-400">Enter a valid email</div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium">Password</label>
+          <input formControlName="password" type="password" placeholder="••••••" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <div *ngIf="f['password'].touched && f['password'].invalid" class="mt-1 text-xs text-rose-400">Password required (min 6 chars)</div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium">Confirm password</label>
+          <input formControlName="confirmPassword" type="password" placeholder="••••••" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <div *ngIf="form.errors?.['mismatch'] && (f['confirmPassword'].touched || f['password'].touched)" class="mt-1 text-xs text-rose-400">Passwords do not match</div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3">
+          <button type="submit" [disabled]="isSubmitting" class="rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-white">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

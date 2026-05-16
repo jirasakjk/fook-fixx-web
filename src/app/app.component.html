@@ -16,6 +16,7 @@
         <a *ngFor="let item of navItems" class="transition hover:text-white text-sm font-medium text-slate-300" (click)="scrollToSection(item.section)">
           {{ item.label }}
         </a>
+        <a routerLink="/login" class="rounded-full bg-white/5 px-3 py-2 text-sm font-medium text-slate-100 hover:bg-white/10">Sign in</a>
       </nav>
 
       <button class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-blue-300/40 hover:bg-white/10 lg:hidden" (click)="toggleMenu()">
@@ -41,7 +42,9 @@
     </div>
   </header>
 
-  <main class="relative">
+  <router-outlet></router-outlet>
+
+  <main *ngIf="showHome" class="relative">
     <section id="home" class="relative mx-auto max-w-7xl px-6 py-24 lg:flex lg:items-center lg:justify-between lg:gap-12">
       <div class="max-w-2xl">
         <span class="rounded-full bg-blue-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-blue-300">Web Developer Portfolio</span>
@@ -55,6 +58,7 @@
           <button class="rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400" (click)="scrollToSection('portfolio')">
             View projects
           </button>
+          <a routerLink="/login" class="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 flex items-center justify-center">Sign in</a>
           <button class="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10" (click)="scrollToSection('contact-me')">
             Contact me
           </button>

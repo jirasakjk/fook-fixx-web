@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import AOS from 'aos';
 
 interface PortfolioProject {
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     { label: 'Portfolio', section: 'portfolio' },
     { label: 'Contact', section: 'contact-me' }
   ];
+  showHome = true;
 
   skills = [
     'Angular',
@@ -35,7 +37,9 @@ export class AppComponent implements OnInit {
     'React',
     'ASP.NET Core',
     'Tailwind CSS',
-    'TypeScript'
+    'TypeScript',
+    'Java',
+    'Spring Boot'
   ];
 
   projects: PortfolioProject[] = [
@@ -62,12 +66,23 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.loadTheme();
     AOS.init({
       duration: 900,
       easing: 'ease-out-cubic',
       once: true
+    });
+
+    // control showing the homepage content vs routed pages
+    this.showHome = !this.router.url.startsWith('/login') && !this.router.url.startsWith('/register');
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        const u = ev.urlAfterRedirects || ev.url;
+        this.showHome = !(u.startsWith('/login') || u.startsWith('/register'));
+      }
     });
   }
 
@@ -103,7 +118,18 @@ export class AppComponent implements OnInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       this.closeMenu();
+      return;
     }
+
+    this.router.navigate(['/']).then(() => {
+      setTimeout(() => {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          this.closeMenu();
+        }
+      }, 100);
+    });
   }
 
   openLink(url: string) {
