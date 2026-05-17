@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   isSubmitting = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.form = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -32,12 +37,15 @@ export class LoginComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
     this.isSubmitting = true;
-    // Simulate submit
+    const username = this.form.value.username || 'User';
+    this.authService.login(username);
+
     setTimeout(() => {
       this.isSubmitting = false;
-      alert('Signed in as: ' + this.form.value.username);
-    }, 800);
+      this.router.navigate(['/dashboard']);
+    }, 250);
   }
 
   onSignup() {

@@ -1,0 +1,64 @@
+<div class="dashboard-shell">
+  <app-dashboard-topbar
+    [username]="authService.displayName"
+    [isDarkMode]="themeService.isDarkMode"
+    [isSidebarOpen]="isSidebarOpen"
+    (toggleTheme)="toggleTheme()"
+    (toggleSidebar)="toggleSidebar()"
+    (signOut)="signOut()">
+  </app-dashboard-topbar>
+
+  <div class="dashboard-layout" [class.sidebar-closed]="!isSidebarOpen">
+    <app-dashboard-sidebar
+      [menuItems]="menuItems"
+      [selected]="selected"
+      [isOpen]="isSidebarOpen"
+      [isDarkMode]="themeService.isDarkMode"
+      (selectMenu)="selectMenu($event)"
+      (toggleTheme)="toggleTheme()"
+      (signOut)="signOut()">
+    </app-dashboard-sidebar>
+
+    <main class="dashboard-content">
+      <div class="content-header">
+        <h1>{{ currentTitle }}</h1>
+        <p>{{ currentDescription }}</p>
+      </div>
+
+      <div class="content-grid" *ngIf="selected === 'dashboard'">
+        <article class="dashboard-card">
+          <h2>Active projects</h2>
+          <p>Track your current projects and jump into the latest updates.</p>
+        </article>
+        <article class="dashboard-card">
+          <h2>Performance</h2>
+          <p>See your activity summary and performance indicators in one place.</p>
+        </article>
+        <article class="dashboard-card">
+          <h2>Notifications</h2>
+          <p>Review the latest messages, alerts and reminders.</p>
+        </article>
+      </div>
+
+      <div class="feature-panel" *ngIf="selected === 'feature1'">
+        <h2>Feature 1 Overview</h2>
+        <p>Use Feature 1 to manage work items, assign tasks, and stay on schedule.</p>
+      </div>
+
+      <div class="feature-panel" *ngIf="selected === 'feature2'">
+        <h2>Feature 2 Overview</h2>
+        <p>Feature 2 helps you analyze data, export reports, and review results quickly.</p>
+      </div>
+
+      <div class="feature-panel" *ngIf="selected === 'feature3'">
+        <h2>Feature 3 Overview</h2>
+        <p>Feature 3 includes integrations, automation, and productivity enhancements.</p>
+      </div>
+
+      <div class="feature-panel" *ngIf="selected === 'settings'">
+        <h2>Settings</h2>
+        <p>Update your profile and preferences. This is a placeholder for app settings.</p>
+      </div>
+    </main>
+  </div>
+</div>

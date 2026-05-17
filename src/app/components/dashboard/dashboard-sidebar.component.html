@@ -1,0 +1,22 @@
+<aside class="dashboard-sidebar" [class.closed]="!isOpen">
+  <nav>
+    <ul>
+      <li *ngFor="let item of menuItems">
+        <button
+          type="button"
+          class="sidebar-link"
+          [class.active]="selected === item.key"
+          (click)="selectMenu.emit(item.key)">
+          {{ item.label }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="sidebar-controls">
+    <button class="mode-button" type="button" (click)="toggleTheme.emit()">
+      <span>{{ isDarkMode ? 'Light' : 'Dark' }}</span>
+      <span aria-hidden="true">{{ isDarkMode ? '☀' : '🌙' }}</span>
+    </button>
+    <button class="signout-button" type="button" (click)="signOut.emit()">Sign out</button>
+  </div>
+</aside>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import AOS from 'aos';
+import { ThemeService } from './services/theme.service';
 
 interface PortfolioProject {
   title: string;
@@ -19,7 +20,6 @@ interface PortfolioProject {
 export class AppComponent implements OnInit {
   title = 'fook-fixx-web';
   isMenuOpen = false;
-  isDarkMode = true;
   contract = 'JIRASAK KANKRASANG';
   email = 'jirasak.kankrasang@hotmail.com';
 
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     { label: 'Contact', section: 'contact-me' }
   ];
   showHome = true;
+  showMainHeader = true;
 
   skills = [
     'Angular',
@@ -66,41 +67,33 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public themeService: ThemeService) {}
 
   ngOnInit() {
-    this.loadTheme();
+    this.themeService.loadTheme();
     AOS.init({
       duration: 900,
       easing: 'ease-out-cubic',
       once: true
     });
 
-    // control showing the homepage content vs routed pages
-    this.showHome = !this.router.url.startsWith('/login') && !this.router.url.startsWith('/register');
+    // control showing the homepage content and app header
+    this.updateRouteFlags(this.router.url);
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         const u = ev.urlAfterRedirects || ev.url;
-        this.showHome = !(u.startsWith('/login') || u.startsWith('/register'));
+        this.updateRouteFlags(u);
       }
     });
   }
 
-  loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    this.isDarkMode = savedTheme ? savedTheme === 'dark' : true;
-    this.applyTheme();
-  }
-
-  applyTheme() {
-    document.body.classList.toggle('dark-mode', this.isDarkMode);
-    document.body.classList.toggle('light-mode', !this.isDarkMode);
+  updateRouteFlags(url: string) {
+    this.showHome = url === '/' || url === '';
+    this.showMainHeader = !url.startsWith('/dashboard');
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
-    this.applyTheme();
+    this.themeService.toggleTheme();
   }
 
   toggleMenu() {

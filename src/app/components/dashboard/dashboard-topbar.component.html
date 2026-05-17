@@ -1,0 +1,18 @@
+<header class="dashboard-topbar">
+  <div class="topbar-left">
+    <button class="hamburger-button" type="button" (click)="toggleSidebar.emit()" aria-label="Toggle sidebar">
+      <span [class.open]="isSidebarOpen"></span>
+      <span [class.open]="isSidebarOpen"></span>
+      <span [class.open]="isSidebarOpen"></span>
+    </button>
+    <div class="topbar-brand">Fook.Fixx Dashboard</div>
+  </div>
+  <div class="topbar-actions">
+    <div class="user-chip">User: {{ username }}</div>
+    <button class="mode-button" type="button" (click)="toggleTheme.emit()">
+      <span>{{ isDarkMode ? 'Light' : 'Dark' }}</span>
+      <span aria-hidden="true">{{ isDarkMode ? '☀' : '🌙' }}</span>
+    </button>
+    <button class="signout-button" type="button" (click)="signOut.emit()">Sign out</button>
+  </div>
+</header>

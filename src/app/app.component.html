@@ -1,7 +1,7 @@
 <div class="relative overflow-hidden page-shell">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.25),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.2),_transparent_35%)]"></div>
 
-  <header class="sticky top-0 z-50 border-b page-header backdrop-blur-xl">
+  <header *ngIf="showMainHeader" class="sticky top-0 z-50 border-b page-header backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
       <a class="flex items-center gap-3 text-white/90 hover:text-white" (click)="scrollToSection('home')">
         <img class="h-9 w-9 rounded-2xl bg-slate-900 p-2 shadow-xl shadow-indigo-500/10" src="assets/images/coding.png" alt="Logo" />
@@ -10,8 +10,8 @@
 
       <nav class="hidden items-center gap-8 lg:flex">
         <button class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:border-blue-300/40 hover:bg-white/10" (click)="toggleTheme()">
-          <span>{{ isDarkMode ? 'Light' : 'Dark' }}</span>
-          <span aria-hidden="true">{{ isDarkMode ? '☀' : '🌙' }}</span>
+          <span>{{ themeService.isDarkMode ? 'Light' : 'Dark' }}</span>
+          <span aria-hidden="true">{{ themeService.isDarkMode ? '☀' : '🌙' }}</span>
         </button>
         <a *ngFor="let item of navItems" class="transition hover:text-white text-sm font-medium text-slate-300" (click)="scrollToSection(item.section)">
           {{ item.label }}
@@ -32,7 +32,7 @@
             {{ item.label }}
           </a>
           <button class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10" (click)="toggleTheme()">
-            {{ isDarkMode ? 'Light mode' : 'Dark mode' }}
+            {{ themeService.isDarkMode ? 'Light mode' : 'Dark mode' }}
           </button>
           <button class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white transition hover:bg-white/10" (click)="closeMenu()">
             Close
