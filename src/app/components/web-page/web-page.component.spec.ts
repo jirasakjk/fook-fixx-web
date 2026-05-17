@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { WebPageComponent } from './web-page.component';
 
@@ -8,7 +9,8 @@ describe('WebPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WebPageComponent]
+      declarations: [WebPageComponent],
+      providers: [provideAnimations()]
     })
     .compileComponents();
 
