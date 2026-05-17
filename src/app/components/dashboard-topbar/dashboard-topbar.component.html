@@ -8,7 +8,19 @@
     <div class="topbar-brand">Fook.Fixx Dashboard</div>
   </div>
   <div class="topbar-actions">
-    <div class="user-chip">User: {{ username }}</div>
+    <div class="user-menu">
+      <button class="user-chip" type="button" (click)="toggleUserMenu()" [attr.aria-expanded]="showUserMenu" aria-label="User menu">
+        User: {{ username }}
+        <span class="kebab-icon">⋮</span>
+      </button>
+      <div class="user-dropdown" [class.open]="showUserMenu" [attr.aria-hidden]="!showUserMenu">
+        <img class="avatar" src="assets/images/undraw_male-avatar_zkzx.svg" alt="User avatar" />
+        <div class="user-name-label">{{ username }}</div>
+        <button class="profile-button" type="button" (click)="openProfile.emit(); showUserMenu = false;">
+          Profile
+        </button>
+      </div>
+    </div>
     <button class="mode-button" type="button" (click)="toggleTheme.emit()">
       <span>{{ isDarkMode ? 'Light' : 'Dark' }}</span>
       <span aria-hidden="true">{{ isDarkMode ? '☀' : '🌙' }}</span>

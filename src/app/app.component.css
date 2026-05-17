@@ -38,6 +38,18 @@
   border-color: rgba(15,23,42,0.08);
 }
 
+:host-context(.light-mode) .logo-link {
+  color: #0f172a !important;
+}
+
+:host-context(.light-mode) .logo-link:hover {
+  color: #020617 !important;
+}
+
+:host-context(.light-mode) .logo-image {
+  background-color: rgba(15,23,42,0.06) !important;
+}
+
 :host-context(.light-mode) .page-card {
   background: rgba(255,255,255,0.92);
   border-color: rgba(15,23,42,0.08);

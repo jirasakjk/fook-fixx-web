@@ -5,8 +5,17 @@
     [isSidebarOpen]="isSidebarOpen"
     (toggleTheme)="toggleTheme()"
     (toggleSidebar)="toggleSidebar()"
-    (signOut)="signOut()">
+    (signOut)="requestSignOut()"
+    (openProfile)="openProfile()">
   </app-dashboard-topbar>
+
+  <app-confirm-signout-dialog
+    *ngIf="isSignoutDialogOpen"
+    [username]="authService.displayName"
+    [isDarkMode]="themeService.isDarkMode"
+    (cancel)="closeSignoutDialog()"
+    (confirm)="confirmSignOut()">
+  </app-confirm-signout-dialog>
 
   <div class="dashboard-layout" [class.sidebar-closed]="!isSidebarOpen">
     <app-dashboard-sidebar
@@ -16,7 +25,7 @@
       [isDarkMode]="themeService.isDarkMode"
       (selectMenu)="selectMenu($event)"
       (toggleTheme)="toggleTheme()"
-      (signOut)="signOut()">
+      (signOut)="requestSignOut()">
     </app-dashboard-sidebar>
 
     <main class="dashboard-content">

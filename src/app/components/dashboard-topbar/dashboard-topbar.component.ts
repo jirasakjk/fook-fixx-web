@@ -15,4 +15,11 @@ export class DashboardTopbarComponent {
   @Output() toggleTheme = new EventEmitter<void>();
   @Output() toggleSidebar = new EventEmitter<void>();
   @Output() signOut = new EventEmitter<void>();
+  @Output() openProfile = new EventEmitter<void>();
+
+  showUserMenu = false;
+
+  toggleUserMenu() {
+    this.showUserMenu = !this.showUserMenu;
+  }
 }

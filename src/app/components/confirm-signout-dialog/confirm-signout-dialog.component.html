@@ -1,0 +1,14 @@
+<div class="confirm-overlay">
+  <div class="confirm-dialog">
+    <div class="confirm-header">
+      <img class="confirm-avatar" src="assets/images/undraw_login_weas.svg" alt="Sign out confirmation avatar" />
+      <h2>Confirm Sign out</h2>
+      <p>Are you sure you want to sign out, {{ username }}?</p>
+    </div>
+
+    <div class="confirm-actions">
+      <button class="cancel-button" type="button" (click)="cancel.emit()">Cancel</button>
+      <button class="confirm-button" type="button" (click)="confirm.emit()">Sign out</button>
+    </div>
+  </div>
+</div>

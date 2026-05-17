@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
-import { DashboardTopbarComponent } from './dashboard-topbar.component';
-import { DashboardSidebarComponent } from './dashboard-sidebar.component';
+import { DashboardTopbarComponent } from '../dashboard-topbar/dashboard-topbar.component';
+import { DashboardSidebarComponent } from '../dashboard-sidebar/dashboard-sidebar.component';
+import { ConfirmSignoutDialogComponent } from '../confirm-signout-dialog/confirm-signout-dialog.component';
 
 interface DashboardMenuItem {
   label: string;
@@ -14,13 +15,14 @@ interface DashboardMenuItem {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, DashboardTopbarComponent, DashboardSidebarComponent],
+  imports: [CommonModule, DashboardTopbarComponent, DashboardSidebarComponent, ConfirmSignoutDialogComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
   selected = 'dashboard';
   isSidebarOpen = true;
+  isSignoutDialogOpen = false;
   menuItems: DashboardMenuItem[] = [
     { label: 'Dashboard', key: 'dashboard' },
     { label: 'Feature 1', key: 'feature1' },
@@ -47,9 +49,22 @@ export class DashboardComponent {
     this.selected = key;
   }
 
-  signOut() {
+  requestSignOut() {
+    this.isSignoutDialogOpen = true;
+  }
+
+  closeSignoutDialog() {
+    this.isSignoutDialogOpen = false;
+  }
+
+  confirmSignOut() {
+    this.isSignoutDialogOpen = false;
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  openProfile() {
+    this.selected = 'settings';
   }
 
   get currentTitle() {
