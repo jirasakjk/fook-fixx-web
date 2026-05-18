@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,11 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   isSubmitting = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private store = inject(Store);
+
+  constructor() {
     this.form = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -39,16 +40,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.isSubmitting = true;
-    const username = this.form.value.username || 'User';
-    this.authService.login(username);
-
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.router.navigate(['/dashboard']);
-    }, 250);
+    const payload = { username: this.form.value.username, password: this.form.value.password };
+    this.store.dispatch(AuthActions.login({ payload }));
+    this.isSubmitting = false;
   }
 
   onSignup() {
-    alert('Redirect to signup (not implemented)');
+    this.router.navigate(['/register']);
   }
 }

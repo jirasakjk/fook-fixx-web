@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,10 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting = false;
 
-  constructor(private fb: FormBuilder) {
+  private fb = inject(FormBuilder);
+  private store = inject(Store);
+
+  constructor() {
     this.form = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -38,9 +43,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.isSubmitting = true;
-    setTimeout(() => {
-      this.isSubmitting = false;
-      alert('Registered: ' + this.form.value.username + ' (' + this.form.value.email + ')');
-    }, 900);
+    const payload = { username: this.form.value.username, email: this.form.value.email, password: this.form.value.password };
+    this.store.dispatch(AuthActions.register({ payload }));
+    this.isSubmitting = false;
   }
 }

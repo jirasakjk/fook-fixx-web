@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../store/auth/auth.actions';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -8,7 +11,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterComponent, ReactiveFormsModule]
+      imports: [RegisterComponent, ReactiveFormsModule],
+      providers: [provideMockStore({})]
     }).compileComponents();
 
     fixture = TestBed.createComponent(RegisterComponent);
@@ -33,7 +37,6 @@ describe('RegisterComponent', () => {
   });
 
   it('should submit when form is valid', fakeAsync(() => {
-    spyOn(window, 'alert');
     component.form.setValue({
       username: 'testuser',
       email: 'test@example.com',
@@ -41,14 +44,13 @@ describe('RegisterComponent', () => {
       confirmPassword: 'password123'
     });
 
+    const store = TestBed.inject(Store) as any;
+    spyOn(store, 'dispatch');
+
     component.onSubmit();
 
-    expect(component.isSubmitting).toBeTrue();
-    expect(component.form.valid).toBeTrue();
-
-    tick(900);
-
     expect(component.isSubmitting).toBeFalse();
-    expect(window.alert).toHaveBeenCalledWith('Registered: testuser (test@example.com)');
+    expect(component.form.valid).toBeTrue();
+    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.register({ payload: { username: 'testuser', email: 'test@example.com', password: 'password123' } }));
   }));
 });

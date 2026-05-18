@@ -3,24 +3,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
-import { AuthService } from '../../services/auth.service';
+import { provideMockStore } from '@ngrx/store/testing';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../store/auth/auth.actions';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router;
-  let authService: AuthService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoginComponent, ReactiveFormsModule, RouterTestingModule],
-      providers: [AuthService]
+      providers: [provideMockStore({})]
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    authService = TestBed.inject(AuthService);
     fixture.detectChanges();
   });
 
@@ -38,18 +38,14 @@ describe('LoginComponent', () => {
   });
 
   it('should login and navigate when form is valid', fakeAsync(() => {
-    spyOn(router, 'navigate');
     component.form.setValue({ username: 'testuser', password: 'password123' });
+    const store = TestBed.inject(Store) as any;
+    spyOn(store, 'dispatch');
 
     component.onSubmit();
 
     expect(component.form.valid).toBeTrue();
-    expect(component.isSubmitting).toBeTrue();
-    expect(authService.displayName).toBe('testuser');
-
-    tick(250);
-
     expect(component.isSubmitting).toBeFalse();
-    expect(router.navigate).toHaveBeenCalledWith(['/dashboard']);
+    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.login({ payload: { username: 'testuser', password: 'password123' } }));
   }));
 });

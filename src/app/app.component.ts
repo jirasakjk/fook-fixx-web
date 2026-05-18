@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import AOS from 'aos';
 import { ThemeService } from './services/theme.service';
 
@@ -14,7 +15,8 @@ interface PortfolioProject {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
