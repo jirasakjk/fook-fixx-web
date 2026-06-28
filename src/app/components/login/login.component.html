@@ -14,13 +14,13 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
         <div>
           <label class="block text-sm font-medium" for="username">Username</label>
-          <input formControlName="username" type="text" placeholder="your.username" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <input formControlName="username" id="username" type="text" placeholder="your.username" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
           <div *ngIf="f['username'].touched && f['username'].invalid" class="mt-1 text-xs text-rose-400">Username is required</div>
         </div>
 
         <div>
           <label class="block text-sm font-medium" for="password">Password</label>
-          <input formControlName="password" type="password" placeholder="••••••••" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
+          <input formControlName="password" id="password" type="password" placeholder="••••••••" class="mt-2 w-full rounded-lg border p-3 bg-transparent" />
           <div *ngIf="f['password'].touched && f['password'].invalid" class="mt-1 text-xs text-rose-400">Password is required (min 6 chars)</div>
         </div>
 
