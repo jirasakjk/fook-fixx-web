@@ -6,6 +6,8 @@ import { provideEffects } from '@ngrx/effects';
 import { authReducer } from './store/auth/auth.reducer';
 import { AuthEffects } from './store/auth/auth.effects';
 import { authInterceptor, authInterceptorProvider } from './core/interceptor/auth.interceptor';
+import { loadingInterceptor } from './core/interceptor/loading.interceptor';
+import { errorInterceptor } from './core/interceptor/error.interceptor';
 import { authGuard } from './core/guards/auth.guard';
 import { Routes } from '@angular/router';
 
@@ -35,7 +37,7 @@ export const appRoutes: Routes = [
 ];
 
 export const APP_PROVIDERS = [
-  provideHttpClient(withInterceptors([authInterceptor])),
+  provideHttpClient(withInterceptors([authInterceptor, loadingInterceptor, errorInterceptor])),
   provideRouter(appRoutes),
   provideAnimations(),
   provideStore({ auth: authReducer }),

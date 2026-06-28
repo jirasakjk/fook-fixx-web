@@ -1,0 +1,35 @@
+<ng-container *ngIf="isLoading(); else contentTemplate">
+  <div [class]="containerClasses">
+    <div class="flex flex-col items-center justify-center gap-3 text-center">
+      <div
+        class="rounded-full border-sky-400 border-t-transparent animate-spin"
+        [class]="spinnerSizeClasses"
+        aria-label="Loading"
+        role="status"
+      ></div>
+      <p class="text-sm font-medium text-slate-200">Loading...</p>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #contentTemplate>
+  <ng-container *ngIf="errorMessage(); else skeletonOrContentTemplate">
+    <div class="flex min-h-24 items-center justify-center rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-center text-sm text-rose-200">
+      {{ errorMessage() }}
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #skeletonOrContentTemplate>
+  <ng-container *ngIf="showSkeleton(); else plainContentTemplate">
+    <div class="space-y-3 rounded-2xl border border-white/10 bg-slate-900/70 p-4">
+      <div class="h-4 w-3/4 animate-pulse rounded bg-slate-700"></div>
+      <div class="h-4 w-full animate-pulse rounded bg-slate-800"></div>
+      <div class="h-4 w-5/6 animate-pulse rounded bg-slate-700"></div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #plainContentTemplate>
+  <ng-content></ng-content>
+</ng-template>

@@ -3,6 +3,10 @@ import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import AOS from 'aos';
 import { ThemeService } from './services/theme.service';
+import { SpinnerExampleComponent } from './components/spinner/spinner-example.component';
+import { GlobalSpinnerComponent } from './components/spinner/global-spinner.component';
+import { UsersExampleComponent } from './components/users/users-example.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 interface PortfolioProject {
   title: string;
@@ -16,7 +20,7 @@ interface PortfolioProject {
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SpinnerExampleComponent, GlobalSpinnerComponent, UsersExampleComponent, ErrorDialogComponent],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
