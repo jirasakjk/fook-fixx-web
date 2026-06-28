@@ -5,29 +5,34 @@ import { AuthEffects } from './auth.effects';
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { SuccessDialogService } from '../../core/services/success-dialog.service';
 
 describe('AuthEffects', () => {
   let actions$: Observable<any>;
   let effects: AuthEffects;
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
+  let successDialogService: jasmine.SpyObj<SuccessDialogService>;
 
   beforeEach(async () => {
     const authSpy = jasmine.createSpyObj('AuthService', ['login', 'register', 'refreshToken', 'logout', 'getProfile', 'clearTokens']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    const successDialogSpy = jasmine.createSpyObj('SuccessDialogService', ['show']);
 
     await TestBed.configureTestingModule({
       providers: [
         AuthEffects,
         provideMockActions(() => actions$),
         { provide: AuthService, useValue: authSpy },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        { provide: SuccessDialogService, useValue: successDialogSpy }
       ]
     }).compileComponents();
 
     effects = TestBed.inject(AuthEffects);
     authService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
     router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    successDialogService = TestBed.inject(SuccessDialogService) as jasmine.SpyObj<SuccessDialogService>;
   });
 
   it('login$ should dispatch loginSuccess on success', (done) => {
@@ -64,11 +69,16 @@ describe('AuthEffects', () => {
     });
   });
 
-  it('registerSuccess$ should navigate to /login', (done) => {
+  it('registerSuccess$ should show success dialog', (done) => {
     actions$ = of(AuthActions.registerSuccess());
     effects.registerSuccess$.subscribe(() => {});
     setTimeout(() => {
-      expect(router.navigate).toHaveBeenCalledWith(['/login']);
+      expect(successDialogService.show).toHaveBeenCalledWith({
+        title: 'Register successfully',
+        message: 'Your account has been created. You can sign in now.',
+        actionLabel: 'Go to sign in',
+        redirectTo: '/login'
+      });
       done();
     }, 0);
   });

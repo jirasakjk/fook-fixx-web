@@ -7,6 +7,7 @@ import { SpinnerExampleComponent } from './components/spinner/spinner-example.co
 import { GlobalSpinnerComponent } from './components/spinner/global-spinner.component';
 import { UsersExampleComponent } from './components/users/users-example.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { SuccessDialogComponent } from './components/success-dialog/success-dialog.component';
 
 interface PortfolioProject {
   title: string;
@@ -20,7 +21,7 @@ interface PortfolioProject {
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule, SpinnerExampleComponent, GlobalSpinnerComponent, UsersExampleComponent, ErrorDialogComponent],
+  imports: [CommonModule, RouterModule, SpinnerExampleComponent, GlobalSpinnerComponent, UsersExampleComponent, ErrorDialogComponent, SuccessDialogComponent],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {

@@ -5,12 +5,14 @@ import { AuthService } from '../../core/services/auth.service';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { SuccessDialogService } from '../../core/services/success-dialog.service';
 
 @Injectable()
 export class AuthEffects {
   private actions$ = inject(Actions);
   private auth = inject(AuthService);
   private router = inject(Router);
+  private successDialogService = inject(SuccessDialogService);
 
   login$ = createEffect(() =>
     this.actions$.pipe(
@@ -46,7 +48,12 @@ export class AuthEffects {
   registerSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.registerSuccess),
-      tap(() => this.router.navigate(['/login']))
+      tap(() => this.successDialogService.show({
+        title: 'Register successfully',
+        message: 'Your account has been created. You can sign in now.',
+        actionLabel: 'Go to sign in',
+        redirectTo: '/login'
+      }))
     ), { dispatch: false }
   );
 
